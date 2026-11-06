@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>STICK CTRL.LER - Sci-Fi Real - MK.atom.ctrl</title>
+<style>
+  body{background:#000;color:#0f0;font-family:monospace;padding:20px;text-align:center}
+  h1{letter-spacing:3px;text-shadow:0 0 10px #0f0}
+  .sci{border:1px solid #0f0;box-shadow:0 0 15px #0f0;padding:15px;margin:10px;background:#010}
+  .stick{width:160px;height:160px;border:2px solid #0f0;border-radius:50%;margin:20px auto;position:relative;background:radial-gradient(circle,#022,#000);box-shadow:0 0 20px #0f0}
+  .knopf{width:55px;height:55px;background:#0f0;border-radius:50%;position:absolute;left:52px;top:52px;cursor:grab;box-shadow:0 0 15px #0f0}
+  button{background:#0f0;color:#000;border:0;padding:10px 14px;cursor:pointer;margin:3px;font-weight:bold;box-shadow:0 0 10px #0f0}
+  button:active{background:#fff}
+  a{color:#0ff}
+  .real{color:#fff}
+</style>
+</head>
+<body>
+<h1>● STICK CTRL.LER - SCI-FI REAL</h1>
+<p>wieimmer..ooOO — MK.atom.ctrl<br>Sci-Fi aber real - nutzbar - funktionell - Git</p>
+
+<div class="sci" id="show">
+<b>STICK: MITTE ● - REAL CPU i5-10210U</b><br>
+<span class="real">BIOS 2.30 | U7310 | 16GB DDR4 | Win11 Pro 23H2 | TICK=0</span>
+</div>
+
+<div class="stick" id="stick"><div class="knopf" id="knopf"></div></div>
+
+<p>
+<button onclick="move('HOCH')">↑ HOCH - CPU - REAL</button><br>
+<button onclick="move('LINKS')">← LINKS - RAM - REAL</button>
+<button onclick="move('MITTE')">● MITTE - RECALL 333</button>
+<button onclick="move('RECHTS')">RECHTS → - ROM - REAL</button><br>
+<button onclick="move('RUNTER')">↓ RUNTER - POWER - REAL</button>
+</p>
+
+<div class="sci">
+<b>CTRL.LER - Funktionell - Real</b><br>
+<button onclick="ctrl('BOOT')">CTRL - BOOT Eigenfindung</button>
+<button onclick="ctrl('SCAN')">CTRL - SCAN 81→729</button>
+<button onclick="ctrl('RESPO')">CTRL - RESPO FREI</button>
+<button onclick="ctrl('RESET')">CTRL - RESET</button>
+<br><br>
+<button onclick="git()">GIT - MK.trans.warb öffnen</button>
+<button onclick="location.href='index.html'">NEU ROOT</button>
+</div>
+
+<div class="sci">
+<b>SCI-FI REAL - Log - Funktionell</b><br>
+<div id="log" style="text-align:left;height:100px;overflow:auto;font-size:12px"></div>
+</div>
+
+<p>© STICK CTRL.LER · Sci-Fi Real · Nutzbar · Funktionell · Git<br>
+<a href="https://github.com/iki1uc/MK.trans.warb">Git: iki1uc / MK.trans.warb</a></p>
+
+<script>
+  // STICK CTRL.LER - Sci-Fi Real - Alles funktionell
+  let tick=0, respoFrei=false;
+  const logEl=document.getElementById('log');
+  function log(s){ tick++; logEl.innerHTML='['+tick+'] '+s+'<br>'+logEl.innerHTML; }
+  function move(dir){
+    const show=document.getElementById('show');
+    const knopf=document.getElementById('knopf');
+    if(dir==='HOCH'){show.innerHTML='<b>STICK: HOCH ↑ - CPU REAL</b><br><span class="real">i5-10210U @ 1.60GHz - arbeitet - TICK='+tick+'</span>'; knopf.style.top='0px'; knopf.style.left='52px'; log('SPRUNG → CPU REAL - i5-10210U');}
+    if(dir==='RUNTER'){show.innerHTML='<b>STICK: RUNTER ↓ - POWER REAL</b><br><span class="real">WiFi6 AX201 + Akku - Leben</span>'; knopf.style.top='105px'; knopf.style.left='52px'; log('SPRUNG → POWER REAL - AX201');}
+    if(dir==='LINKS'){show.innerHTML='<b>STICK: LINKS ← - RAM REAL</b><br><span class="real">16GB DDR4 - 729 Pool</span>'; knopf.style.left='0px'; knopf.style.top='52px'; log('SPRUNG → RAM REAL - 16GB');}
+    if(dir==='RECHTS'){show.innerHTML='<b>STICK: RECHTS → - ROM REAL</b><br><span class="real">SSD C: - Archiv</span>'; knopf.style.left='105px'; knopf.style.top='52px'; log('SPRUNG → ROM REAL - SSD');}
+    if(dir==='MITTE'){show.innerHTML='<b>STICK: MITTE ● - RECALL 333</b><br><span class="real">ACTIVE NODE 333 - wartet</span>'; knopf.style.left='52px'; knopf.style.top='52px'; log('SPRUNG → MITTE 333 RECALL');}
+  }
+  function ctrl(cmd){
+    if(cmd==='BOOT'){log('CTRL BOOT - JOHN BLACK Boot Eigenfindung - BLACK BLACK BLACK'); alert('BOOT Eigenfindung - JOHN BLACK aktiv - Sci-Fi Real!');}
+    if(cmd==='SCAN'){log('CTRL SCAN - 81→729 gescannt - alle Räume OK');}
+    if(cmd==='RESPO'){respoFrei=!respoFrei; log('CTRL RESPO FREI='+respoFrei);}
+    if(cmd==='RESET'){tick=0; log('CTRL RESET - zurück zu ROOT'); move('MITTE');}
+  }
+  function git(){ log('GIT - öffne MK.trans.warb'); window.open('https://github.com/iki1uc/MK.trans.warb','_blank'); }
+  // Stick ziehen - funktionell - Maus + Touch
+  const knopf=document.getElementById('knopf');
+  let drag=false;
+  knopf.onmousedown=()=>drag=true;
+  document.onmouseup=()=>drag=false;
+  document.onmousemove=(e)=>{
+    if(!drag) return;
+    const stick=document.getElementById('stick').getBoundingClientRect();
+    let x=e.clientX-stick.left-27, y=e.clientY-stick.top-27;
+    x=Math.max(0,Math.min(105,x)); y=Math.max(0,Math.min(105,y));
+    knopf.style.left=x+'px'; knopf.style.top=y+'px';
+  };
+  log('STICK CTRL.LER BEREIT - Sci-Fi Real - Git - Funktionell');
+</script>
+</body>
+</html>
