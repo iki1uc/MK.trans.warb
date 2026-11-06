@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>vol.1 - Funktional - MK.atom.ctrl</title>
+<style>
+  body{background:#000;color:#fff;font-family:monospace;padding:20px}
+  .box{border:1px solid #0f0;padding:15px;margin:10px 0;background:#111}
+  button{background:#fff;color:#000;border:0;padding:10px 14px;cursor:pointer;margin:3px;font-weight:bold}
+  a{color:#0ff}
+  .raum{border:1px solid #555;padding:10px;margin:5px;display:inline-block;cursor:pointer}
+  .raum.active{border-color:#0f0;background:#122}
+</style>
+</head>
+<body>
+<h1>● vol.1 - Funktional - MK.atom.ctrl</h1>
+<p>wieimmer..ooOO — vol.1 ist in index.html drinne<br>
+Deswegen muss vol.1 funktional sein - Funktion → Funktionalität → Funktion als Funktion</p>
+
+<div class="box" id="info">TICK=0 | γ=0 | ACTIVE 333 RECALL | FUNKTION=BEREIT</div>
+
+<div class="box">
+<b>FUNKTION 1 - Räume - Funktionalität</b><br>
+<div id="rooms"></div>
+</div>
+
+<div class="box">
+<b>FUNKTION 2 - Buttons - Funktion als Funktion</b><br>
+<button onclick="f_boot()">FUNKTION BOOT</button>
+<button onclick="f_scan()">FUNKTION SCAN</button>
+<button onclick="f_respo()">FUNKTION RESPO</button>
+<button onclick="f_reset()">FUNKTION RESET</button>
+</div>
+
+<div class="box">
+<b>FUNKTION 3 - Zurück zu Index - Funktion</b><br>
+<a href="index.html">← Zurück zu index.html - weil vol.1 ist in index drinne</a><br>
+<button onclick="location.href='index.html'">→ Index - Funktion</button>
+</div>
+
+<div class="box" id="log" style="height:100px;overflow:auto;font-size:12px">LOG: vol.1 funktional geladen<br></div>
+
+<p>© vol.1 · Funktional · Funktion → Funktionalität → Funktion</p>
+
+<script>
+  // vol.1.html - Funktional - Funktion als Funktion
+  // Nicht nur zeigen, sondern funktionieren!
+  let tick=0, active=333, respoFrei=false;
+  const rooms=[111,222,333,444,555,666,777,888,999];
+  const names={111:'BIOS',222:'VERBUND',333:'RECALL',444:'PEAK',555:'ABWEHR',666:'ENERGIE',777:'CO2',888:'ATOM',999:'BENCH'};
+  const grid=document.getElementById('rooms');
+  const info=document.getElementById('info');
+  const logEl=document.getElementById('log');
+
+  function log(s){ logEl.innerHTML+='['+new Date().toLocaleTimeString()+'] '+s+'<br>'; logEl.scrollTop=1000; }
+  function update(){
+    tick++;
+    const gamma=Math.sin(tick*0.05);
+    info.textContent=`TICK=${tick} | γ=${gamma.toFixed(3)} | ACTIVE ${active} ${names[active]} | FUNKTION=BEREIT | RESPO_FREI=${respoFrei}`;
+  }
+  // Funktion: Räume bauen - funktional
+  rooms.forEach(id=>{
+    const d=document.createElement('div');
+    d.className='raum'+(id===active?' active':'');
+    d.textContent=id+' '+names[id];
+    d.onclick=()=>{ active=id; document.querySelectorAll('.raum').forEach(e=>e.classList.remove('active')); d.classList.add('active'); log('FUNKTION: ACTIVE NODE '+id+' '+names[id]); update(); };
+    grid.appendChild(d);
+  });
+  // Funktion: Buttons - funktional
+  function f_boot(){ log('FUNKTION BOOT - JOHN BLACK Boot Eigenfindung - BLACK BLACK BLACK'); alert('BOOT - Funktion als Funktion - JOHN BLACK aktiv!'); update(); }
+  function f_scan(){ log('FUNKTION SCAN - 81→729 - alle 9 Räume funktional'); update(); }
+  function f_respo(){ respoFrei=!respoFrei; log('FUNKTION RESPO FREI='+respoFrei); update(); }
+  function f_reset(){ tick=0; active=333; log('FUNKTION RESET - zurück zu ROOT'); update(); }
+  update();
+  setInterval(update,1000);
+  log('vol.1.html funktional - Funktion → Funktionalität → Funktion');
+</script>
+</body>
+</html>
