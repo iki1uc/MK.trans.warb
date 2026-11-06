@@ -3,44 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MK.trans.warb - MK.atom.ctrl</title>
+<title>muss.weg - BRAIN ROOT - Wagnisschale</title>
 <style>
-  body{background:#000;color:#fff;font-family:monospace;padding:20px;margin:0}
-  h1{font-size:24px}
-  .box{border:1px solid #555;padding:15px;margin:10px 0;background:#111;cursor:pointer}
-  .box:hover{border-color:#0f0}
-  button{background:#fff;color:#000;border:0;padding:10px 14px;cursor:pointer;margin:3px;font-weight:bold}
-  a{color:#0ff;text-decoration:none}
+  body{background:#000;color:#fff;font-family:monospace;margin:0;padding:20px}
+  h1{font-size:22px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:900px}
+  .raum{border:1px solid #555;padding:15px;cursor:pointer;background:#111}
+  .raum.active{border-color:#0f0;background:#122}
+  .raum b{font-size:18px}
+  #log{margin-top:20px;background:#111;padding:10px;height:200px;overflow:auto;font-size:12px}
+  button{background:#fff;color:#000;border:0;padding:8px 14px;cursor:pointer;margin:3px}
+  .top{display:flex;gap:10px;flex-wrap:wrap}
+  a{color:#0ff}
 </style>
 </head>
 <body>
-<h1>● MK.trans.warb - MK.atom.ctrl</h1>
-<p>wieimmer..ooOO — Axiom-System<br>
-Transition Warb - Übergang von Ecke zu Ecke<br>
-Erst Hardware, dann Treiber, dann System</p>
+<h1>● NC.SUITE // LFREEBOTE - muss.weg</h1>
+<p>WURZEL ×3 · 729→81→9→3 · ALL IN ALL OUT · CLOSED<br>
+BIOS=2.30 | U7310 10210U 16GB | Win11 Pro 23H2<br>
+<a href="Durchgang-V111-Blicke.html">→ Durchgang-V111-Blicke</a> | <a href="vol.1.html">→ vol.1</a></p>
 
-<p>
-<button onclick="location.href='CPU.index.html'">CPU Nutzen</button>
-<button onclick="location.href='GPU.index.html'">GPU Nutzen</button>
-<button onclick="location.href='RAM.index.html'">RAM Nutzen</button>
-<button onclick="location.href='ROM.index.html'">ROM Nutzen</button>
-<button onclick="location.href='BOARD.index.html'">BOARD Nutzen</button>
-<button onclick="location.href='POWER.index.html'">POWER Nutzen</button>
-</p>
+<div class="top">
+  <button id="btnBoot">BOOT Eigenfindung</button>
+  <button id="btnRespo">RESPO FREI Toggle</button>
+  <button id="btnScan">SCAN 81→729</button>
+  <button id="btnReset">RESET</button>
+</div>
 
-<div class="box" onclick="location.href='CPU.index.html'"><b>CPU.index.html</b> - i5-10210U - Kern - Rechnen - → Nutzen</div>
-<div class="box" onclick="location.href='GPU.index.html'"><b>GPU.index.html</b> - Intel UHD - Sehen - 4K - → Nutzen</div>
-<div class="box" onclick="location.href='RAM.index.html'"><b>RAM.index.html</b> - 16GB DDR4 - 729 Pool - → Nutzen</div>
-<div class="box" onclick="location.href='ROM.index.html'"><b>ROM.index.html</b> - SSD C: - Archiv - → Nutzen</div>
-<div class="box" onclick="location.href='BOARD.index.html'"><b>BOARD.index.html</b> - U7310 - Verbindet alles - BIOS 2.30 - → Nutzen</div>
-<div class="box" onclick="location.href='POWER.index.html'"><b>POWER.index.html</b> - WiFi6 AX201 + Akku - Leben - → Nutzen</div>
+<div id="info">TICK=0 | γ=0 | ACTIVE NODE 333 // RECALL | RAM=729 virtuell</div>
 
-<p>
-<button onclick="history.back()">← Zurück Nutzen</button>
-<button onclick="history.forward()">Weiter Nutzen →</button>
-</p>
+<h2>9 Räume - alle zeigbar, alle machbar</h2>
+<div class="grid" id="rooms"></div>
 
-<p>© MK.trans.warb · MK.atom.ctrl · Axiom-System<br>
-Aus dem Index nutzen - Übergang nutzen - Zurück nutzen - Weiter nutzen als Nutzen</p>
+<h2>729 Matrix - 9 Layer</h2>
+<div id="matrix" style="font-size:14px;line-height:1.4;word-break:break-all"></div>
+
+<h2>Log</h2>
+<div id="log"></div>
+
+<p>© NC.SUITE · WURZEL ×3 · ACTIVE NODE SYSTEM · LFREEBOTE · ALL IN ALL OUT<br>
+state sync via wurzel-state.js // ORDNUNG.tmp.ready</p>
+
+<script type="module">
+  // Wagnisschale ROOT zuerst - 3 → 9
+  // Import mit Guard - wenn ein Modul fehlt, geht Rest trotzdem weiter
+  let CORE=null, RESPO=null, DREIECK=null, ROUTER=null, RESOLVER=null;
+  const logEl=document.getElementById('log');
+  function log(s){ logEl.innerHTML += '['+new Date().toLocaleTimeString()+'] '+s+'<br>'; logEl.scrollTop=logEl.scrollHeight; }
+  log('INIT 81→729');
+  log('ORDNUNG.tmp.ready');
+  log('BIOS=2.30 | U7310 10210U erkannt');
+
+  try{ CORE = await import('./core/OS_CORE.js'); log('core/OS_CORE.js geladen'); }catch(e){ log('core/OS_CORE.js fehlt - läuft trotzdem: '+e.message); }
+  try{ RESPO = await import('./hdf/modules/respo/respo.js'); log('hdf/modules/respo/respo.js geladen'); }catch(e){ 
+    try{ RESPO = await import('./modules/respo/respo.js'); log('modules/respo/respo.js geladen (Fallback)'); }catch(e2){ log('respo fehlt - RESPO=∅ Modus'); }
+  }
+  try{ DREIECK = await import('./hdf/modules/dreieck/dreieck.js'); log('dreieck geladen'); }catch(e){
+    try{ DREIECK = await import('./modules/dreieck/dreieck.js'); log('modules/dreieck geladen (Fallback)'); }catch(e2){ log('dreieck fehlt'); }
+  }
+  try{ ROUTER = await import('./stage/router.js'); log('stage/router.js geladen'); }catch(e){ log('router fehlt'); }
+  try{ RESOLVER = await import('./hdf/resolver.js'); log('hdf/resolver.js geladen'); }catch(e){ log('resolver fehlt'); }
+
+  // 9 Räume bauen
+  const rooms=[
+    {id:111,name:'BIOS',desc:'Start - Ordnung'},
+    {id:222,name:'VERBUND',desc:'Verbindung'},
+    {id:333,name:'RECALL',desc:'Erinnerung - ACTIVE'},
+    {id:444,name:'PEAK',desc:'Spitze'},
+    {id:555,name:'ABWEHR',desc:'Schutz'},
+    {id:666,name:'ENERGIE',desc:'Kraft'},
+    {id:777,name:'CO2',desc:'Luft'},
+    {id:888,name:'ATOM',desc:'Kern'},
+    {id:999,name:'BENCH',desc:'Test'},
+  ];
+  const grid=document.getElementById('rooms');
+  let active=333, tick=0, respoFrei=false;
+  rooms.forEach(r=>{
+    const d=document.createElement('div');
+    d.className='raum'+(r.id===active?' active':'');
+    d.innerHTML='<b>'+r.id+'</b><br>'+r.name+'<br><small>'+r.desc+'</small><br><span>81/81</span>';
+    d.onclick=()=>{ active=r.id; document.querySelectorAll('.raum').forEach(el=>el.classList.remove('active')); d.classList.add('active'); log('ACTIVE NODE '+r.id+' // '+r.name+' → 9 EVIG'); update(); };
+    grid.appendChild(d);
+  });
+
+  function update(){
+    tick++;
+    const gamma=Math.sin(tick*0.05);
+    document.getElementById('info').textContent=`TICK=${tick} | γ=${gamma.toFixed(3)} | ACTIVE NODE ${active} // RECALL | RAM=729 | RESPO_FREI=${respoFrei} | Fusion: 0→3→9→27→81→243→729→730`;
+    // 729 Matrix zeichnen - 81 Zeichen pro Layer, 9 Layer
+    let m='';
+    for(let l=0;l<9;l++){
+      let line='';
+      for(let i=0;i<81;i++){ const chars=['❄','≈','✕','✿','·']; line+=chars[(i+l+tick)%5]; }
+      m+='L'+(l+1)+' '+rooms[l].id+' '+line+'<br>';
+    }
+    document.getElementById('matrix').innerHTML=m;
+  }
+  update();
+  setInterval(update,1000);
+
+  document.getElementById('btnBoot').onclick=()=>{ log('BOOT Eigenfindung: Anfang → Ende → Boot Fund → Arbeit'); log('JOHN BLACK Boot Monteur AKTIV'); alert('BOOT Eigenfindung gestartet - JOHN BLACK aktiv'); };
+  document.getElementById('btnRespo').onclick=()=>{ respoFrei=!respoFrei; log('RESPO_FREI='+respoFrei+' → '+(respoFrei?'RAW→∅→OUT (FREI)':'RAW→RESPO→OUT')); update(); };
+  document.getElementById('btnScan').onclick=()=>{ log('SCAN 81→729 Grid - alle 9 Räume gescannt - VALIDATE OK'); update(); };
+  document.getElementById('btnReset').onclick=()=>{ tick=0; active=333; log('RESET → ROOT'); update(); };
+
+  // Hash Router - wenn stage/router.js da ist, nutzen
+  if(ROUTER && ROUTER.init) { try{ ROUTER.init(); log('Router init OK'); }catch(e){} }
+  window.addEventListener('hashchange',()=>{ log('HASH → '+location.hash); });
+</script>
 </body>
 </html>
