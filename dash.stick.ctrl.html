@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="UTF-8"><title>Dash Stick Ctrl - MK.atom.ctrl</title>
+<style>body{background:#000;color:#fff;font-family:monospace;padding:20px;text-align:center}.stick{width:150px;height:150px;border:2px solid #0f0;border-radius:50%;margin:20px auto;position:relative;background:#111}.knopf{width:50px;height:50px;background:#fff;border-radius:50%;position:absolute;left:50px;top:50px;cursor:pointer}button{background:#fff;color:#000;border:0;padding:10px 14px;cursor:pointer;margin:3px;font-weight:bold}.box{border:1px solid #0f0;padding:15px;margin:10px}</style>
+</head>
+<body>
+<h1>● DASH STICK CTRL - MK.atom.ctrl</h1>
+<p>wieimmer..ooOO — Work Dash Stick Ctrl<br>Roboter bedienen - nicht nur gucken!</p>
+
+<div class="box" id="show">STICK: MITTE - Roboter wartet - ACTIVE 333 RECALL</div>
+
+<div class="stick" id="stick">
+<div class="knopf" id="knopf"></div>
+</div>
+
+<p>
+<button onclick="move('HOCH')">↑ HOCH - CPU</button><br>
+<button onclick="move('LINKS')">← LINKS - RAM</button>
+<button onclick="move('MITTE')">● MITTE - RECALL</button>
+<button onclick="move('RECHTS')">RECHTS → - ROM</button><br>
+<button onclick="move('RUNTER')">↓ RUNTER - POWER</button>
+</p>
+
+<p>
+<button onclick="ctrl('BOOT')">CTRL - BOOT</button>
+<button onclick="ctrl('RESPO')">CTRL - RESPO FREI</button>
+<button onclick="ctrl('SCAN')">CTRL - SCAN</button>
+<button onclick="ctrl('RESET')">CTRL - RESET</button>
+</p>
+
+<p>
+<button onclick="location.href='index.html'">← NEU ROOT</button>
+<button onclick="location.href='stage/stage.index.html'">→ STAGE</button>
+</p>
+
+<p>© DASH STICK CTRL · Work Dash · Ctrl.ler · BEREIT</p>
+
+<script>
+  // DASH STICK CTRL - Work Dash Stick Ctrl - Ctrl.ler
+  // Ctrl.ler = Controller - der der kontrolliert
+  function move(dir){
+    const show=document.getElementById('show');
+    const knopf=document.getElementById('knopf');
+    if(dir==='HOCH'){show.innerHTML='STICK: HOCH ↑ - CPU - i5-10210U'; knopf.style.top='0px';}
+    if(dir==='RUNTER'){show.innerHTML='STICK: RUNTER ↓ - POWER - AX201'; knopf.style.top='100px';}
+    if(dir==='LINKS'){show.innerHTML='STICK: LINKS ← - RAM - 16GB'; knopf.style.left='0px';}
+    if(dir==='RECHTS'){show.innerHTML='STICK: RECHTS → - ROM - SSD'; knopf.style.left='100px';}
+    if(dir==='MITTE'){show.innerHTML='STICK: MITTE ● - RECALL 333 - ACTIVE'; knopf.style.left='50px'; knopf.style.top='50px';}
+    console.log('STICK: ' + dir);
+  }
+  function ctrl(cmd){
+    const show=document.getElementById('show');
+    show.innerHTML='CTRL.ler: ' + cmd + ' - Roboter macht ' + cmd;
+    console.log('CTRL.ler: ' + cmd);
+    if(cmd==='BOOT') alert('BOOT Eigenfindung - JOHN BLACK aktiv!');
+    if(cmd==='RESET') alert('RESET - zurück zu ROOT 333!');
+  }
+  // Stick mit Maus ziehen - Work Dash Stick
+  const knopf=document.getElementById('knopf');
+  let drag=false;
+  knopf.onmousedown=()=>drag=true;
+  document.onmouseup=()=>drag=false;
+  document.onmousemove=(e)=>{
+    if(!drag) return;
+    const stick=document.getElementById('stick').getBoundingClientRect();
+    let x=e.clientX-stick.left-25, y=e.clientY-stick.top-25;
+    x=Math.max(0,Math.min(100,x)); y=Math.max(0,Math.min(100,y));
+    knopf.style.left=x+'px'; knopf.style.top=y+'px';
+  };
+</script>
+</body>
+</html>
